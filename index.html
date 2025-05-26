@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闲鱼多店铺批量搬运助手 - 一键采集发布神器</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .price-card {
+            transition: all 0.3s ease;
+        }
+
+        .price-card:hover {
+            transform: scale(1.03);
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="fas fa-store text-3xl text-orange-500 mr-2"></i>
+                <h1 class="text-2xl font-bold text-gray-800">闲鱼店铺搬运助手</h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#features" class="text-gray-600 hover:text-orange-500 font-medium">核心功能</a>
+                <a href="#video" class="text-gray-600 hover:text-orange-500 font-medium">视频教程</a>
+                <a href="#price" class="text-gray-600 hover:text-orange-500 font-medium">购买方案</a>
+                <a href="#faq" class="text-gray-600 hover:text-orange-500 font-medium">常见问题</a>
+            </nav>
+            <button class="md:hidden text-gray-600">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-16 md:py-24">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">闲鱼多店铺无限搬运助手</h2>
+                <p class="text-xl mb-8">一键采集同行热门商品，无限店铺批量发布，效率提升20倍！</p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#price"
+                        class="bg-white text-orange-500 font-bold py-3 px-8 rounded-full hover:bg-gray-100 text-center pulse-animation">
+                        <i class="fas fa-shopping-cart mr-2"></i>立即购买 ¥598
+                    </a>
+                    <a href="#video"
+                        class="border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-orange-500 text-center">
+                        <i class="fas fa-play-circle mr-2"></i>观看演示
+                    </a>
+                </div>
+                <div class="mt-8 flex items-center">
+                    <div class="flex -space-x-2">
+                        <img class="w-10 h-10 rounded-full border-2 border-white"
+                            src="https://randomuser.me/api/portraits/women/12.jpg" alt="用户头像">
+                        <img class="w-10 h-10 rounded-full border-2 border-white"
+                            src="https://randomuser.me/api/portraits/men/32.jpg" alt="用户头像">
+                        <img class="w-10 h-10 rounded-full border-2 border-white"
+                            src="https://randomuser.me/api/portraits/women/45.jpg" alt="用户头像">
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm">已有 <span class="font-bold">2,358+</span> 位卖家正在使用</p>
+                        <div class="flex text-yellow-300 text-sm">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="text-white ml-1">(4.9/5.0)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative w-full max-w-lg">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                        alt="软件界面截图" class="rounded-lg shadow-2xl border-8 border-white w-full h-auto">
+                    <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg">
+                        <div class="flex items-center">
+                            <div class="bg-green-100 p-3 rounded-full mr-3">
+                                <i class="fas fa-check-circle text-green-500 text-2xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-gray-800">7天无忧退款</p>
+                                <p class="text-sm text-gray-600">不满意全额退款</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">为什么选择我们的软件？</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">专为闲鱼多店铺卖家设计的批量搬运解决方案，让您的电商业务更高效</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-gray-50 p-8 rounded-xl transition duration-300">
+                    <div class="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-bolt text-orange-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">一键批量采集</h3>
+                    <p class="text-gray-600">支持从闲鱼平台，一键采集同行店铺所有的热门商品信息，自动提取标题、图片、价格等关键数据。</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card bg-gray-50 p-8 rounded-xl transition duration-300">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-infinity text-blue-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">无限店铺管理</h3>
+                    <p class="text-gray-600">通过填写店铺配置，可无限添加闲鱼店铺账号，一键将商品批量发布到所有店铺，彻底解放人力。</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card bg-gray-50 p-8 rounded-xl transition duration-300">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-magic text-purple-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">快速选出爆品</h3>
+                    <p class="text-gray-600">从同行店铺里快速筛选出，已经过市场验证的热门商品，让出单就像喝水那么简单。</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card bg-gray-50 p-8 rounded-xl transition duration-300">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-green-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">批量发布商品</h3>
+                    <p class="text-gray-600">支持批量发布商品，支持发布到多个账号，使用官方正规发布接口，安全稳定。</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="feature-card bg-gray-50 p-8 rounded-xl transition duration-300">
+                    <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-red-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">数据看板</h3>
+                    <p class="text-gray-600">实时监控各店铺商品数据，自动生成销售报表，帮助优化选品和运营策略。</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="feature-card bg-gray-50 p-8 rounded-xl transition duration-300">
+                    <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-headset text-yellow-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">专属客服支持</h3>
+                    <p class="text-gray-600">7×12小时专业技术支持，一对一远程安装指导，定期功能更新，持续为您保驾护航。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Tutorial Section -->
+    <section id="video" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">视频使用教程</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">3分钟快速上手，轻松掌握批量搬运技巧</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto bg-white rounded-xl overflow-hidden shadow-lg">
+                <div class="video-container">
+                    <!-- 替换为您的实际视频嵌入代码 -->
+                    <iframe
+                        src="//player.bilibili.com/player.html?isOutside=true&aid=114537634207222&bvid=BV1yJJFzMEGf&cid=30049307718&p=1"
+                        scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"
+                        style="width:100%;height:100%;"></iframe>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">闲鱼店铺搬运助手</h3>
+                    <p class="text-gray-600 mb-4">本视频详细演示了从软件安装、Cookie配置、无限店铺添加到批量发布的全流程操作。</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">01:20
+                            软件安装</span>
+                        <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">03:45
+                            Cookie配置</span>
+                        <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">06:10
+                            无限店铺添加</span>
+                        <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded">09:30
+                            批量发布</span>
+                        <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded">12:15
+                            防封号设置</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 grid md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-orange-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-download text-orange-500"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-800">软件下载</h4>
+                    </div>
+                    <p class="text-gray-600 mb-4">提供Windows和Mac双版本下载，兼容主流操作系统。</p>
+                    <a href="#" class="text-orange-500 font-medium hover:underline">下载安装包 <i
+                            class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-cookie text-blue-500"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-800">Cookie获取指南</h4>
+                    </div>
+                    <p class="text-gray-600 mb-4">详细图文教程教您如何获取闲鱼店铺Cookie。</p>
+                    <a href="#" class="text-blue-500 font-medium hover:underline">查看教程 <i
+                            class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-users text-green-500"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-800">VIP用户群</h4>
+                    </div>
+                    <p class="text-gray-600 mb-4">加入VIP用户交流群，获取最新技巧和问题解答。</p>
+                    <a href="#" class="text-green-500 font-medium hover:underline">加入社群 <i
+                            class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">用户真实评价</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">听听已经使用我们软件的卖家怎么说</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="用户头像"
+                            class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">张女士</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"管理10个闲鱼店铺变得如此简单！只需要配置好Cookie，一键就能发布到所有店铺，每月节省我至少100小时工作时间。"</p>
+                    <p class="text-sm text-gray-500">2025-05-07</p>
+                </div>
+
+                <div class="bg-gray-50 p-8 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="用户头像"
+                            class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">王先生</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"瞬间选出别人爆单的商品，再也不用花大量时间去选品了，出单嘎嘎猛，Alpha老哥YYDS！"</p>
+                    <p class="text-sm text-gray-500">2025-05-13</p>
+                </div>
+
+                <div class="bg-gray-50 p-8 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="用户头像"
+                            class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">李女士</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"客服手把手教我配置参数，现在管理13个店铺游刃有余，第一个月就多赚了3万多，这软件太值了！"</p>
+                    <p class="text-sm text-gray-500">2025-05-20</p>
+                </div>
+            </div>
+
+            <div class="mt-12 bg-orange-50 border-l-4 border-orange-500 p-4 rounded-r">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-exclamation-circle text-orange-500 text-xl mt-1 mr-3"></i>
+                    </div>
+                    <div>
+                        <p class="text-orange-700 font-medium">温馨提示：</p>
+                        <p class="text-orange-600">本软件仅为提高工作效率的工具，请遵守闲鱼平台规则合理使用。我们不鼓励也不支持任何违规操作。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="price" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">选择您的方案</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">一次性购买，永久使用，持续免费更新</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="price-card bg-white rounded-xl overflow-hidden shadow-lg">
+                    <div class="p-8 text-center border-b">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">专业版</h3>
+                        <p class="text-gray-600 mb-6">支持无限闲鱼店铺管理</p>
+                        <div class="flex justify-center items-baseline mb-6">
+                            <span class="text-4xl font-bold text-orange-500">¥598</span>
+                            <span class="ml-2 text-gray-500 line-through">¥1298</span>
+                        </div>
+                        <a href="#"
+                            class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-full inline-block">
+                            立即购买
+                        </a>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="font-bold text-gray-800 mb-4">包含功能：</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>支持无限闲鱼店铺管理（通过Cookie配置）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>每日最多批量发布3000个商品</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>商品一键采集功能（仅支持闲鱼平台）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>高级智能选品功能</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>官方正规发布商品接口</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>7×12小时VIP客服支持</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>7天无忧退款保障</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-8 grid md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-lock text-blue-500"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800">安全支付</h4>
+                        </div>
+                        <p class="text-gray-600">支持支付宝、微信支付等主流支付方式，交易过程加密保障资金安全。</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-green-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-sync-alt text-green-500"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800">更新政策</h4>
+                        </div>
+                        <p class="text-gray-600">购买后永久免费更新，无需额外付费即可享受后续所有新功能。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">常见问题</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">您可能关心的问题解答</p>
+            </div>
+
+            <div class="max-w-3xl mx-auto space-y-4">
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button
+                        class="faq-toggle w-full flex justify-between items-center p-5 text-left font-medium text-gray-800 hover:bg-gray-50">
+                        <span>可以管理多少个闲鱼店铺？</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-5 pb-5 text-gray-600">
+                        <p>我们的专业版支持无限数量的闲鱼店铺管理：</p>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li>通过填写各店铺的Cookie信息即可添加</li>
+                            <li>没有店铺数量限制，想加多少就加多少</li>
+                            <li>所有店铺可以同时批量发布商品</li>
+                            <li>支持分组管理不同类目的店铺</li>
+                        </ul>
+                        <p class="mt-2">购买后我们会提供详细的Cookie获取教程，并有客服一对一指导配置。</p>
+                    </div>
+                </div>
+
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button
+                        class="faq-toggle w-full flex justify-between items-center p-5 text-left font-medium text-gray-800 hover:bg-gray-50">
+                        <span>如何获取闲鱼店铺Cookie？</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-5 pb-5 text-gray-600">
+                        <p>获取Cookie非常简单安全：</p>
+                        <ol class="list-decimal pl-5 mt-2 space-y-1">
+                            <li>登录闲鱼网页版</li>
+                            <li>使用浏览器开发者工具(F12)获取</li>
+                            <li>或者使用我们提供的浏览器插件一键获取</li>
+                            <li>复制粘贴到软件中即可</li>
+                        </ol>
+                        <p class="mt-2">购买后我们会提供详细的图文+视频教程，3分钟即可学会。Cookie信息仅存储在您本地电脑，不会上传到任何服务器。</p>
+                    </div>
+                </div>
+
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button
+                        class="faq-toggle w-full flex justify-between items-center p-5 text-left font-medium text-gray-800 hover:bg-gray-50">
+                        <span>软件会被闲鱼检测到吗？</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-5 pb-5 text-gray-600">
+                        <p>我们的软件采用多重防护机制：</p>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li>智能模拟人工操作行为模式</li>
+                            <li>随机操作间隔时间，避免规律性操作</li>
+                            <li>自动生成差异化内容，每个店铺商品信息不同</li>
+                            <li>支持设置每日发布上限</li>
+                            <li>可选IP代理功能，避免同一IP频繁操作</li>
+                        </ul>
+                        <p class="mt-2">但请注意，任何自动化工具都有一定风险，请合理控制发布频率，遵守平台规则。</p>
+                    </div>
+                </div>
+
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button
+                        class="faq-toggle w-full flex justify-between items-center p-5 text-left font-medium text-gray-800 hover:bg-gray-50">
+                        <span>退款政策是怎样的？</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-5 pb-5 text-gray-600">
+                        <p>我们提供7天无忧退款保障：</p>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li>购买后7天内可无条件申请退款</li>
+                            <li>退款将在1-3个工作日内处理完成</li>
+                            <li>退款后软件授权将立即失效</li>
+                        </ul>
+                        <p class="mt-2">7天后如因特殊原因需要退款，请联系客服协商处理。</p>
+                    </div>
+                </div>
+
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button
+                        class="faq-toggle w-full flex justify-between items-center p-5 text-left font-medium text-gray-800 hover:bg-gray-50">
+                        <span>软件需要定期续费吗？</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-5 pb-5 text-gray-600">
+                        <p>不需要！我们的软件采用一次性付费模式：</p>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li>¥598一次性购买，永久使用</li>
+                            <li>所有功能更新免费</li>
+                            <li>无隐藏费用或订阅费用</li>
+                        </ul>
+                        <p class="mt-2">后续如有重大版本升级，老用户可享受优惠升级价格。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-orange-500 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">立即提升您的闲鱼运营效率</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">现在购买立省700元，仅需¥598即可获得价值1298元的闲鱼店铺搬运助手</p>
+            <a href="#price"
+                class="bg-white text-orange-500 font-bold py-3 px-8 rounded-full hover:bg-gray-100 inline-block pulse-animation">
+                <i class="fas fa-shopping-cart mr-2"></i>立即购买
+            </a>
+            <p class="mt-4 text-orange-100">7×12小时客服在线支持 · 7天无忧退款 · 永久免费更新</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white text-lg font-medium mb-4">闲鱼店铺批量搬运助手</h4>
+                    <p class="mb-4">专为闲鱼多店铺卖家设计的批量搬运解决方案，提升20倍工作效率。</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-weixin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-qq text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-weibo text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white text-lg font-medium mb-4">快速链接</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#features" class="hover:text-white">功能特色</a></li>
+                        <li><a href="#video" class="hover:text-white">视频教程</a></li>
+                        <li><a href="#price" class="hover:text-white">购买方案</a></li>
+                        <li><a href="#faq" class="hover:text-white">常见问题</a></li>
+                        <li><a href="#" class="hover:text-white">用户评价</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white text-lg font-medium mb-4">帮助中心</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white">安装指南</a></li>
+                        <li><a href="#" class="hover:text-white">Cookie获取教程</a></li>
+                        <li><a href="#" class="hover:text-white">视频教程</a></li>
+                        <li><a href="#" class="hover:text-white">更新日志</a></li>
+                        <li><a href="#" class="hover:text-white">联系客服</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white text-lg font-medium mb-4">联系我们</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-2"></i>
+                            <span>962313443@qq.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone-alt mt-1 mr-2"></i>
+                            <span>180 0305 9652</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-2"></i>
+                            <span>广东省惠州市科技产业园区</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-gray-800 text-sm">
+                <div class="md:flex md:items-center md:justify-between">
+                    <p>© 2025 闲鱼搬运助手. 保留所有权利.</p>
+                    <div class="mt-4 md:mt-0">
+                        <a href="#" class="hover:text-white mr-4">隐私政策</a>
+                        <a href="#" class="hover:text-white mr-4">服务条款</a>
+                        <a href="#" class="hover:text-white">免责声明</a>
+                    </div>
+                </div>
+                <p class="mt-4 text-xs text-gray-500">免责声明：本软件仅为提高工作效率的工具，请遵守闲鱼平台规则合理使用。软件开发者不对因使用本软件导致的任何账号问题负责。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <a href="#price"
+            class="bg-orange-500 hover:bg-orange-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg pulse-animation">
+            <i class="fas fa-shopping-cart text-xl"></i>
+        </a>
+    </div>
+
+    <script>
+        // FAQ toggle functionality
+        document.querySelectorAll('.faq-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('i');
+
+                content.classList.toggle('hidden');
+                icon.classList.toggle('transform');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile menu toggle (placeholder - would need actual implementation)
+        document.querySelector('.md\\:hidden').addEventListener('click', () => {
+            alert('移动端菜单功能需要进一步开发');
+        });
+    </script>
+</body>
+
+</html>
