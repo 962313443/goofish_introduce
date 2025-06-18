@@ -6,37 +6,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>闲鱼商品采集器/搬运助手 - 闲鱼虚拟电商搬运</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        。price-card:hover {
-            transform: scale(1.04);
-            box-shadow: 0 12px 40px rgba(255, 140, 0, 0.10);
+        html,
+        body {
+            font-family: 'Poppins', 'HarmonyOS Sans', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
         }
 
-        。feature-card {
+        .glass {
+            background: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border-radius: 1.5rem;
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .glass-border {
+            border: 2.5px solid;
+            border-image: linear-gradient(120deg, #ffb86c 0%, #ff6e7f 50%, #5f72bd 100%) 1;
+        }
+
+        .glow {
+            filter: drop-shadow(0 0 16px #ffb86c) drop-shadow(0 0 32px #ff6e7f);
+        }
+
+        .glow-btn {
+            box-shadow: 0 0 16px 2px #ffb86c99, 0 4px 32px 0 #ff6e7f33;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #ffb86c 0%, #ff6e7f 50%, #5f72bd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card-recommend {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, #ffb86c 0%, #ff6e7f 100%);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            padding: 0.25rem 1.5rem;
+            border-radius: 9999px;
+            box-shadow: 0 2px 12px #ffb86c55;
+            letter-spacing: 0.1em;
+        }
+
+        .feature-icon {
+            background: linear-gradient(135deg, #ffb86c 0%, #ff6e7f 100%);
+            box-shadow: 0 2px 16px #ffb86c33;
+        }
+
+        .faq-card {
             transition: box-shadow 0.3s, transform 0.3s;
         }
 
-        。feature-card:hover {
-            box-shadow: 0 8px 32px rgba(255, 140, 0, 0.10);
-            transform: translateY(-4px) scale(1.02);
-        }
-
-        。faq-card {
-            transition: box-shadow 0.3s, transform 0.3s;
-        }
-
-        。faq-card:hover {
-            box-shadow: 0 4px 16px rgba(255, 140, 0, 0.08);
+        .faq-card:hover {
+            box-shadow: 0 4px 24px #ffb86c33;
             transform: translateY(-2px) scale(1.01);
         }
 
-        。video-responsive {
+        .video-glass {
+            box-shadow: 0 8px 40px 0 #ffb86c33, 0 0 0 4px #fff3e0;
+        }
+
+        .video-responsive {
             position: relative;
             padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
-            border-radius: 1rem;
-            box-shadow: 0 8px 32px rgba(255, 140, 0, 0.10);
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 32px #ffb86c33, 0 0 0 4px #fff3e0;
         }
 
         .video-responsive iframe {
@@ -45,32 +90,168 @@
             left: 0;
             width: 100%;
             height: 100%;
-            border-radius: 1rem;
+            border-radius: 1.5rem;
+        }
+
+        .divider {
+            height: 3px;
+            background: linear-gradient(90deg, #ffb86c 0%, #ff6e7f 50%, #5f72bd 100%);
+            border-radius: 2px;
+            margin: 2.5rem 0 2rem 0;
+        }
+
+        .bg-blur-spot {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        @media (max-width: 768px) {
+
+            .glass,
+            .glass-border,
+            .video-glass {
+                border-radius: 1rem;
+            }
+
+            .video-responsive {
+                border-radius: 1rem;
+            }
+        }
+
+        /* 新增：导航栏美化和按钮hover动画 */
+        .nav-header {
+            background: rgba(255, 255, 255, 0.22);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.13);
+            backdrop-filter: blur(18px) saturate(180%);
+            -webkit-backdrop-filter: blur(18px) saturate(180%);
+            border-radius: 2rem;
+            border: 2.5px solid rgba(255, 255, 255, 0.28);
+            transition: box-shadow 0.3s, background 0.3s;
+        }
+
+        .nav-btn {
+            background: linear-gradient(90deg, #ffb86c 0%, #ff6e7f 50%, #5f72bd 100%);
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-radius: 9999px;
+            padding: 0.7rem 2.5rem;
+            box-shadow: 0 2px 16px #ffb86c55, 0 4px 32px 0 #ff6e7f33;
+            transition: all 0.22s cubic-bezier(.4, 2, .6, 1);
+            outline: none;
+            border: none;
+            letter-spacing: 0.08em;
+        }
+
+        .nav-btn:hover {
+            background: linear-gradient(90deg, #ffb86c 10%, #ff6e7f 60%, #5f72bd 100%);
+            filter: brightness(1.08) drop-shadow(0 0 12px #ffb86c88);
+            transform: scale(1.06) translateY(-2px);
+            box-shadow: 0 6px 32px #ffb86c99, 0 8px 40px #ff6e7f44;
+        }
+
+        /* 价格卡片hover效果 */
+        .price-card {
+            transition: box-shadow 0.28s, transform 0.28s, border 0.28s;
+        }
+
+        .price-card:hover {
+            box-shadow: 0 12px 48px #ffb86c55, 0 0 0 4px #ffb86c33;
+            border: 2.5px solid #ffb86c;
+            transform: translateY(-8px) scale(1.035);
+            z-index: 2;
+        }
+
+        /* 年度授权高性价比角标 */
+        .value-tag {
+            position: absolute;
+            top: -18px;
+            left: 12px;
+            background: linear-gradient(90deg, #5f72bd 0%, #ffb86c 100%);
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 800;
+            padding: 0.22rem 1.5rem 0.22rem 1.2rem;
+            border-radius: 9999px;
+            box-shadow: 0 2px 12px #5f72bd55;
+            letter-spacing: 0.13em;
+            z-index: 3;
+            transition: box-shadow 0.22s, filter 0.22s;
+        }
+
+        .value-tag:hover {
+            box-shadow: 0 4px 24px #5f72bd99, 0 0 8px #ffb86c99;
+            filter: brightness(1.12) drop-shadow(0 0 8px #ffb86c);
+        }
+
+        /* header标题字体微调 */
+        .nav-title {
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            background: linear-gradient(90deg, #ffb86c 0%, #ff6e7f 50%, #5f72bd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-logo {
+            font-size: 2.5rem;
+            margin-right: 0.7rem;
+            filter: drop-shadow(0 0 8px #ffb86c);
+        }
+
+        @media (max-width: 768px) {
+            .nav-header {
+                border-radius: 1rem;
+            }
+
+            .nav-title {
+                font-size: 1.3rem;
+            }
+
+            .nav-logo {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 
-<body class="bg-gradient-to-br from-orange-50 via-white to-orange-100 min-h-screen font-sans">
+<body
+    class="bg-gradient-to-br from-[#fff7e6] via-[#fff] to-[#f0e7ff] min-h-screen font-sans relative overflow-x-hidden">
+    <!-- 背景光斑 -->
+    <div class="bg-blur-spot"
+        style="width:420px;height:420px;top:-120px;left:-120px;background:radial-gradient(circle,#ffb86c 0%,#fff3e0 80%);">
+    </div>
+    <div class="bg-blur-spot"
+        style="width:320px;height:320px;top:60vh;right:-100px;background:radial-gradient(circle,#5f72bd 0%,#fff3e0 80%);">
+    </div>
+    <div class="bg-blur-spot"
+        style="width:180px;height:180px;top:30vh;left:60vw;background:radial-gradient(circle,#ff6e7f 0%,#fff3e0 80%);">
+    </div>
+
     <!-- Header -->
-    <header class="bg-white/80 shadow-sm sticky top-0 z-10 backdrop-blur">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center">
-                <span class="text-orange-500 text-3xl font-bold mr-2">🐟</span>
-                <span class="text-2xl font-bold text-gray-800 tracking-tight">闲鱼商品采集器/搬运助手</span>
-            </div>
-            <a href="#price"
-                class="bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 text-white font-bold py-2 px-7 rounded-full shadow-lg transition-all text-base">立即试用</a>
+    <header
+        class="nav-header shadow-lg sticky top-0 z-20 mx-auto max-w-6xl mt-6 mb-4 px-6 py-3 flex justify-between items-center backdrop-blur-lg">
+        <div class="flex items-center">
+            <span class="nav-logo font-extrabold glow">🐟</span>
+            <span class="nav-title drop-shadow-lg">闲鱼商品采集器/搬运助手</span>
         </div>
+        <a href="#price" class="nav-btn">立即试用</a>
     </header>
 
     <!-- Hero Section -->
-    <section class="py-16 md:py-24">
-        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-10">
+    <section class="relative py-20 md:py-32 flex flex-col items-center justify-center">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12 relative z-10">
             <div class="md:w-2/3 mb-8 md:mb-0">
-                <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 mb-6 leading-tight drop-shadow">
-                    闲鱼商品采集器/搬运助手</h1>
-                <p class="text-xl text-gray-700 mb-8">一站式采集、筛选、导出、批量发布闲鱼商品，助力虚拟电商搬运与数据分析，效率提升20倍！</p>
-                <ul class="mb-10 space-y-3 text-gray-700 text-lg">
+                <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 mb-7 leading-tight drop-shadow-2xl tracking-wider"
+                    style="letter-spacing:0.04em;">闲鱼商品采集器/搬运助手</h1>
+                <p class="text-2xl md:text-3xl font-bold gradient-text mb-8 tracking-wide">
+                    一站式采集、筛选、导出、批量发布闲鱼商品，助力虚拟电商搬运与数据分析，效率提升20倍！</p>
+                <ul class="mb-12 space-y-4 text-gray-800 text-xl font-medium">
                     <li>✔️ 批量采集多个闲鱼用户商品</li>
                     <li>✔️ 支持商品关键词全平台搜索</li>
                     <li>✔️ 智能筛选（价格、想要人数等）</li>
@@ -79,11 +260,19 @@
                     <li>✔️ 授权管理，安全防破解</li>
                 </ul>
                 <a href="#price"
-                    class="bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 text-white font-bold py-3 px-10 rounded-full shadow-lg text-lg transition-all">立即试用</a>
+                    class="glow-btn bg-gradient-to-r from-orange-400 via-pink-400 to-indigo-500 hover:from-orange-500 hover:to-indigo-600 text-white font-bold py-4 px-14 rounded-full shadow-2xl text-2xl tracking-widest transition-all">立即试用</a>
             </div>
             <div class="md:w-1/3 flex justify-center">
-                <div class="bg-white/90 rounded-2xl shadow-xl p-8 w-full max-w-xs border border-orange-100">
-                    <h2 class="text-xl font-bold text-gray-800 mb-4">适用人群</h2>
+                <div class="glass glass-border shadow-2xl p-10 w-full max-w-xs flex flex-col items-center relative">
+                    <div
+                        class="absolute -top-8 left-1/2 -translate-x-1/2 bg-gradient-to-r from-orange-400 via-pink-400 to-indigo-500 p-3 rounded-full shadow-lg">
+                        <svg width="36" height="36" fill="none" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="12" fill="#fff3e0" />
+                            <path d="M12 6v6l4 2" stroke="#ff6e7f" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800 mb-4 mt-6">适用人群</h2>
                     <ul class="space-y-3 text-gray-600 text-base">
                         <li>• 闲鱼虚拟电商搬运</li>
                         <li>• 多店铺运营</li>
@@ -95,137 +284,205 @@
         </div>
     </section>
 
+    <div class="divider max-w-3xl mx-auto"></div>
+
     <!-- Video Tutorial Section -->
-    <section class="py-8">
+    <section class="py-10">
         <div class="container mx-auto px-4 flex flex-col items-center">
-            <div class="bg-white/90 rounded-2xl shadow-xl p-8 w-full max-w-2xl border border-orange-100 mb-4">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">软件使用教程</h2>
-                <div class="video-responsive mb-3">
-                    <iframe
-                        src="//player.bilibili.com/player.html?isOutside=true&aid=114583368897038&bvid=BV1wxjizFEEu&cid=30189947901&p=1"
-                        scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+            <div class="glass glass-border video-glass p-0 w-full max-w-2xl mb-4 relative overflow-hidden">
+                <div class="h-2 w-full bg-gradient-to-r from-orange-400 via-pink-400 to-indigo-500"></div>
+                <div class="p-8 pb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center tracking-wider">软件使用教程</h2>
+                    <div class="video-responsive mb-3">
+                        <iframe
+                            src="//player.bilibili.com/player.html?isOutside=true&aid=114583368897038&bvid=BV1wxjizFEEu&cid=30189947901&p=1"
+                            scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                    </div>
+                    <div class="text-center text-gray-500 text-base">3分钟快速上手演示</div>
                 </div>
-                <div class="text-center text-gray-500 text-base">3分钟快速上手演示</div>
             </div>
         </div>
     </section>
+
+    <div class="divider max-w-3xl mx-auto"></div>
 
     <!-- Price Section -->
-    <section id="price" class="py-16 bg-white/90">
+    <section id="price" class="py-20">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-extrabold text-gray-800 mb-4">授权与价格</h2>
+            <div class="text-center mb-14">
+                <h2 class="text-4xl font-extrabold gradient-text mb-4 tracking-wider">授权与价格</h2>
                 <p class="text-lg text-gray-600">支持试用与灵活付费，永久免费升级</p>
             </div>
-            <div class="flex flex-col md:flex-row justify-center gap-8">
-                <div
-                    class="price-card bg-gradient-to-br from-orange-100 to-orange-50 rounded-2xl p-8 text-center shadow-lg transition-all mb-8 md:mb-0 border border-orange-100">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">试用版</h3>
-                    <p class="text-3xl font-bold text-orange-500 mb-2">免费</p>
-                    <p class="mb-4 text-gray-600">新用户可免费试用1天</p>
-                    <a href="#contact"
-                        class="bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 text-white font-bold py-2 px-7 rounded-full shadow-lg transition-all">立即试用</a>
+            <div class="flex flex-col md:flex-row justify-center gap-10 relative">
+                <div class="relative flex-1 max-w-sm mx-auto mb-10 md:mb-0">
+                    <div
+                        class="price-card glass glass-border shadow-2xl p-10 text-center transition-all border-0 relative">
+                        <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-orange-400 via-pink-400 to-indigo-500 px-6 py-1 rounded-full text-white font-bold text-sm tracking-widest shadow-lg"
+                            style="letter-spacing:0.12em;">新手推荐</div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2 mt-6">试用版</h3>
+                        <p class="text-4xl font-extrabold gradient-text mb-2">免费</p>
+                        <p class="mb-6 text-gray-600">新用户可免费试用1天</p>
+                        <a href="#contact"
+                            class="glow-btn bg-gradient-to-r from-orange-400 via-pink-400 to-indigo-500 hover:from-orange-500 hover:to-indigo-600 text-white font-bold py-3 px-10 rounded-full shadow-lg transition-all text-lg tracking-wider">立即试用</a>
+                    </div>
                 </div>
-                <div
-                    class="price-card bg-white rounded-2xl p-8 text-center shadow-lg transition-all border border-orange-200">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">月度授权</h3>
-                    <p class="text-3xl font-bold text-orange-500 mb-2">¥29</p>
-                    <p class="mb-4 text-gray-600">1个月全功能使用</p>
-                    <a href="#contact"
-                        class="bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 text-white font-bold py-2 px-7 rounded-full shadow-lg transition-all">购买授权</a>
+                <div class="relative flex-1 max-w-sm mx-auto mb-10 md:mb-0">
+                    <div
+                        class="price-card glass glass-border shadow-2xl p-10 text-center transition-all border-0 relative">
+                        <div class="card-recommend">主推</div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2 mt-6">月度授权</h3>
+                        <p class="text-4xl font-extrabold gradient-text mb-2">¥29</p>
+                        <p class="mb-6 text-gray-600">1个月全功能使用</p>
+                        <a href="#contact"
+                            class="glow-btn bg-gradient-to-r from-orange-400 via-pink-400 to-indigo-500 hover:from-orange-500 hover:to-indigo-600 text-white font-bold py-3 px-10 rounded-full shadow-lg transition-all text-lg tracking-wider">购买授权</a>
+                    </div>
                 </div>
-                <div
-                    class="price-card bg-white rounded-2xl p-8 text-center shadow-lg transition-all border border-orange-200">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">年度授权</h3>
-                    <p class="text-3xl font-bold text-orange-500 mb-2">¥298</p>
-                    <p class="mb-4 text-gray-600">12个月全功能使用</p>
-                    <a href="#contact"
-                        class="bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 text-white font-bold py-2 px-7 rounded-full shadow-lg transition-all">购买授权</a>
+                <div class="relative flex-1 max-w-sm mx-auto">
+                    <div
+                        class="price-card glass glass-border shadow-2xl p-10 text-center transition-all border-0 relative">
+                        <div class="value-tag">高性价比</div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2 mt-6">年度授权</h3>
+                        <p class="text-4xl font-extrabold gradient-text mb-2">¥298</p>
+                        <p class="mb-6 text-gray-600">12个月全功能使用</p>
+                        <a href="#contact"
+                            class="glow-btn bg-gradient-to-r from-orange-400 via-pink-400 to-indigo-500 hover:from-orange-500 hover:to-indigo-600 text-white font-bold py-3 px-10 rounded-full shadow-lg transition-all text-lg tracking-wider">购买授权</a>
+                    </div>
                 </div>
             </div>
-            <div class="text-center mt-8 text-gray-500 text-sm">* 所有付费用户均可享受永久免费升级与技术支持</div>
+            <div class="text-center mt-10 text-gray-500 text-base">* 所有付费用户均可享受永久免费升级与技术支持</div>
         </div>
     </section>
 
+    <div class="divider max-w-3xl mx-auto"></div>
+
     <!-- Features Section -->
-    <section class="py-16 bg-gradient-to-br from-orange-50 via-white to-orange-100">
+    <section class="py-20">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-extrabold text-gray-800 mb-4">核心功能一览</h2>
+            <div class="text-center mb-14">
+                <h2 class="text-4xl font-extrabold gradient-text mb-4 tracking-wider">核心功能一览</h2>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="feature-card bg-white rounded-2xl shadow p-8 border border-orange-100">
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="feature-card glass glass-border shadow-lg p-10 flex flex-col items-center text-center">
+                    <div class="feature-icon w-16 h-16 flex items-center justify-center rounded-full mb-5">
+                        <svg width="36" height="36" fill="none" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="12" fill="#fff3e0" />
+                            <path d="M6 12l6 6 6-6" stroke="#ffb86c" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
                     <h3 class="font-bold text-lg text-orange-500 mb-2">批量采集</h3>
                     <p class="text-gray-700">支持输入多个闲鱼用户ID，自动采集所有商品信息，省时省力。</p>
                 </div>
-                <div class="feature-card bg-white rounded-2xl shadow p-8 border border-orange-100">
+                <div class="feature-card glass glass-border shadow-lg p-10 flex flex-col items-center text-center">
+                    <div class="feature-icon w-16 h-16 flex items-center justify-center rounded-full mb-5">
+                        <svg width="36" height="36" fill="none" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="12" fill="#fff3e0" />
+                            <path d="M8 12h8M12 8v8" stroke="#ff6e7f" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
                     <h3 class="font-bold text-lg text-orange-500 mb-2">关键词搜索</h3>
                     <p class="text-gray-700">输入关键词，一键采集全平台相关商品，快速发现爆品。</p>
                 </div>
-                <div class="feature-card bg-white rounded-2xl shadow p-8 border border-orange-100">
+                <div class="feature-card glass glass-border shadow-lg p-10 flex flex-col items-center text-center">
+                    <div class="feature-icon w-16 h-16 flex items-center justify-center rounded-full mb-5">
+                        <svg width="36" height="36" fill="none" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="12" fill="#fff3e0" />
+                            <path d="M12 6v12" stroke="#5f72bd" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
                     <h3 class="font-bold text-lg text-orange-500 mb-2">智能筛选</h3>
                     <p class="text-gray-700">按价格区间、想要人数等多条件筛选，精准定位优质商品。</p>
                 </div>
-                <div class="feature-card bg-white rounded-2xl shadow p-8 border border-orange-100">
+                <div class="feature-card glass glass-border shadow-lg p-10 flex flex-col items-center text-center">
+                    <div class="feature-icon w-16 h-16 flex items-center justify-center rounded-full mb-5">
+                        <svg width="36" height="36" fill="none" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="12" fill="#fff3e0" />
+                            <path d="M6 18l6-6 6 6" stroke="#ffb86c" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
                     <h3 class="font-bold text-lg text-orange-500 mb-2">一键导出Excel</h3>
                     <p class="text-gray-700">所有采集/筛选结果可一键导出为Excel，方便后续分析与搬运。</p>
                 </div>
-                <div class="feature-card bg-white rounded-2xl shadow p-8 border border-orange-100">
+                <div class="feature-card glass glass-border shadow-lg p-10 flex flex-col items-center text-center">
+                    <div class="feature-icon w-16 h-16 flex items-center justify-center rounded-full mb-5">
+                        <svg width="36" height="36" fill="none" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="12" fill="#fff3e0" />
+                            <path d="M8 16l4-4 4 4" stroke="#ff6e7f" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
                     <h3 class="font-bold text-lg text-orange-500 mb-2">批量发布</h3>
                     <p class="text-gray-700">支持批量发布到目标平台，极大提升搬运效率。</p>
                 </div>
-                <div class="feature-card bg-white rounded-2xl shadow p-8 border border-orange-100">
+                <div class="feature-card glass glass-border shadow-lg p-10 flex flex-col items-center text-center">
+                    <div class="feature-icon w-16 h-16 flex items-center justify-center rounded-full mb-5">
+                        <svg width="36" height="36" fill="none" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="12" fill="#fff3e0" />
+                            <path d="M12 8v8M8 12h8" stroke="#5f72bd" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
                     <h3 class="font-bold text-lg text-orange-500 mb-2">授权管理</h3>
-                    <p class="text-gray-700">联网加密授权，安全防破解，支持试用、月付、年付灵活选择。</p>
+                    <p class="text-gray-700">本地加密授权，安全防破解，支持试用、月付、年付灵活选择。</p>
                 </div>
             </div>
         </div>
     </section>
+
+    <div class="divider max-w-3xl mx-auto"></div>
 
     <!-- FAQ Section -->
-    <section class="py-16 bg-white/90">
+    <section class="py-20">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-extrabold text-gray-800 mb-4">常见问题</h2>
+            <div class="text-center mb-14">
+                <h2 class="text-4xl font-extrabold gradient-text mb-4 tracking-wider">常见问题</h2>
             </div>
-            <div class="max-w-3xl mx-auto space-y-6">
-                <div class="faq-card bg-white rounded-xl p-6 shadow border border-orange-100">
-                    <h4 class="font-bold text-gray-800 mb-2">Q: 如何试用和购买？</h4>
-                    <p class="text-gray-700">添加微信 <span
+            <div class="max-w-3xl mx-auto space-y-8">
+                <div class="faq-card glass glass-border rounded-xl p-8 shadow-lg border-0">
+                    <h4 class="font-bold text-gray-800 mb-2 text-lg">Q: 如何试用和购买？</h4>
+                    <p class="text-gray-700 text-base">添加微信 <span
                             class="font-bold text-orange-500">junlin9403</span>，发送机器码获取试用/购买授权码，激活后即可使用。</p>
                 </div>
-                <div class="faq-card bg-white rounded-xl p-6 shadow border border-orange-100">
-                    <h4 class="font-bold text-gray-800 mb-2">Q: Cookie如何获取？</h4>
-                    <p class="text-gray-700">在浏览器登录闲鱼网页版，按F12打开开发者工具，复制完整Cookie字符串，粘贴到软件中导入即可。</p>
+                <div class="faq-card glass glass-border rounded-xl p-8 shadow-lg border-0">
+                    <h4 class="font-bold text-gray-800 mb-2 text-lg">Q: Cookie如何获取？</h4>
+                    <p class="text-gray-700 text-base">在浏览器登录闲鱼网页版，按F12打开开发者工具，复制完整Cookie字符串，粘贴到软件中导入即可。</p>
                 </div>
-                <div class="faq-card bg-white rounded-xl p-6 shadow border border-orange-100">
-                    <h4 class="font-bold text-gray-800 mb-2">Q: 采集/发布有限制吗？</h4>
-                    <p class="text-gray-700">软件无采集数量限制，发布数量建议遵守平台规则，避免频繁操作导致风控。</p>
+                <div class="faq-card glass glass-border rounded-xl p-8 shadow-lg border-0">
+                    <h4 class="font-bold text-gray-800 mb-2 text-lg">Q: 采集/发布有限制吗？</h4>
+                    <p class="text-gray-700 text-base">软件无采集数量限制，发布数量建议遵守平台规则，避免频繁操作导致风控。</p>
                 </div>
-                <div class="faq-card bg-white rounded-xl p-6 shadow border border-orange-100">
-                    <h4 class="font-bold text-gray-800 mb-2">Q: 付费后能否永久免费升级？</h4>
-                    <p class="text-gray-700">是的，所有付费用户均可永久免费升级和享受技术支持。</p>
+                <div class="faq-card glass glass-border rounded-xl p-8 shadow-lg border-0">
+                    <h4 class="font-bold text-gray-800 mb-2 text-lg">Q: 付费后能否永久免费升级？</h4>
+                    <p class="text-gray-700 text-base">是的，所有付费用户均可永久免费升级和享受技术支持。</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <div class="divider max-w-3xl mx-auto"></div>
+
     <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-gradient-to-br from-orange-50 via-white to-orange-100">
+    <section id="contact" class="py-20">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl font-extrabold text-gray-800 mb-4">联系我们</h2>
-            <p class="text-lg text-gray-700 mb-6">如需试用、购买、技术支持或定制开发，请添加微信 <span
-                    class="font-bold text-orange-500">junlin9403</span></p>
-            <a href="weixin://"
-                class="inline-block bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 text-white font-bold py-3 px-10 rounded-full text-lg shadow-lg transition-all">微信：junlin9403</a>
+            <div class="glass glass-border shadow-2xl max-w-xl mx-auto p-12">
+                <h2 class="text-4xl font-extrabold gradient-text mb-6 tracking-wider">联系我们</h2>
+                <p class="text-lg text-gray-700 mb-8">如需试用、购买、技术支持或定制开发，请添加微信 <span
+                        class="font-bold text-orange-500">junlin9403</span></p>
+                <a href="weixin://"
+                    class="glow-btn bg-gradient-to-r from-orange-400 via-pink-400 to-indigo-500 hover:from-orange-500 hover:to-indigo-600 text-white font-bold py-4 px-16 rounded-full text-2xl shadow-2xl tracking-widest transition-all">微信：junlin9403</a>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-400 py-8 mt-8">
+    <footer class="bg-gradient-to-r from-[#2d1e4f] via-[#1a1333] to-[#2d1e4f] text-gray-200 py-10 mt-8">
         <div class="container mx-auto px-4 text-center">
-            <div class="mb-2">&copy; 2025 闲鱼商品采集器/搬运助手. 保留所有权利.</div>
-            <div class="text-xs text-gray-500">免责声明：本软件仅供学习和数据采集研究使用，用户需遵守相关法律法规和平台规则。开发者不对使用本软件产生的任何后果承担责任。</div>
+            <div class="mb-2 text-lg font-bold tracking-widest gradient-text drop-shadow-lg">&copy; 2025 闲鱼商品采集器/搬运助手.
+                保留所有权利.</div>
+            <div class="text-xs text-gray-400 mt-2">免责声明：本软件仅供学习和数据采集研究使用，用户需遵守相关法律法规和平台规则。开发者不对使用本软件产生的任何后果承担责任。</div>
         </div>
     </footer>
 </body>
